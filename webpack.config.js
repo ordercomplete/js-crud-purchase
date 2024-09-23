@@ -27,7 +27,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "public/"),
     publicPath: "/public/dist",
-    filename: "js/app.js",
+    filename: "app.js",
   },
   plugins: [
     new webpack.ProvidePlugin({
