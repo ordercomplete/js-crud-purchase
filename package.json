@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./index.js",
-    "clean": "rimraf public/*",
     "build": "npm run clean && sass src:public/css && webpack --mode production",
+    "clean": "rimraf public/*",
     "client": "nodemon -e js,hbs,json,css ./index.js",
     "watch": "webpack --watch",
     "sass:build": "sass sсss:public/css",

@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
   publish = "public"
-  runtime = "node-20.15.0"
+  runtime = "node"
 
 # Встановіть контекст для виробничого середовища (production)
 [context.production]
