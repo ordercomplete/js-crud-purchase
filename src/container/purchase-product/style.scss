@@ -1,0 +1,119 @@
+@use "../../lib/service.scss" as s;
+
+@use "../../component/heading/style.scss" as heading;
+@use "../../component/purchase-product/style.scss" as purchaseProduct;
+@use "../../component/field/style.scss" as field;
+@use "../../component/divider/style.scss" as divider;
+@use "../../component/button/style.scss" as button;
+.purchase-product {
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(10);
+    padding: s.space(10);
+    align-items: center;
+  }
+  &__single-text {
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    display: grid;
+    gap: s.space(4);
+  }
+  &__single-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0d6efd;
+  }
+  &__other-text {
+    text-align: left;
+    width: 100%;
+    max-width: 1000px;
+    display: grid;
+    gap: s.space(4);
+  }
+  &__other-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0d6efd;
+  }
+  &__subtitle {
+    font-size: 16px;
+    color: s.color(dark);
+  }
+  &__list {
+    max-width: 1000px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: s.space(5);
+  }
+  &__info {
+    display: flex;
+    gap: s.space(8);
+    align-items: flex-start;
+    max-width: 700px;
+  }
+  &__info-image {
+    max-height: 400px;
+    width: 100%;
+  }
+  &__info-text {
+    display: flex;
+    flex-direction: column;
+    gap: s.space(4);
+    align-items: flex-start;
+  }
+  &__info-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &__info-subtitle {
+    font-size: 16px;
+    color: s.color(gray);
+  }
+  &__info-category {
+    padding: 5px 10px;
+    border-radius: 30px;
+    font-size: 14px;
+    color: s.color(dark);
+    border: 1px solid transparent;
+  }
+  &__info-category--1 {
+    border-color: blue;
+    color: blue;
+  }
+  &__info-category--2 {
+    border-color: green;
+    color: green;
+  }
+  &__info-button {
+    background-color: s.color(main);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+@media (max-width: 760px) {
+  .purchase-product {
+    &__list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+@media (max-width: 560px) {
+  .purchase-product {
+    &__list {
+      grid-template-columns: 1fr;
+    }
+  }
+}
