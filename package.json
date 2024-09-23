@@ -8,8 +8,8 @@
     "build": "npm run clean && sass src:public/css && webpack --mode production",
     "client": "nodemon -e js,hbs,json,css ./index.js",
     "watch": "webpack --watch",
-    "sass:build": "sass sсss:public/dist/css",
-    "sass:watch": "sass --watch src:public/dist/css",
+    "sass:build": "sass sсss:public/css",
+    "sass:watch": "sass --watch src:css",
     "dev": "run-p sass:watch client"
   },
   "keywords": [],
