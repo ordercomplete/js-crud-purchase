@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "public"
+
+# Встановіть контекст для виробничого середовища (production)
+[context.production]
+  command = "npm run build"
+  publish = "public"
+
+# Ви можете додати інші налаштування, такі як змінні середовища, в залежності від потреб вашого проекту.
+# [build.environment]
+#   NODE_ENV = "production"
