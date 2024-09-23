@@ -26,7 +26,7 @@ module.exports = {
   entry: "./src/route/index.js",
   output: {
     path: path.resolve(__dirname, "public/css"),
-    publicPath: "/public/dist",
+    publicPath: "/public",
     filename: "app.js",
   },
   plugins: [
