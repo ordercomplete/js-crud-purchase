@@ -1,6 +1,61 @@
 const path = require("path");
 const webpack = require("webpack");
+const fs = require("fs");
 
+// Функція для динамічного знаходження всіх входів
+// function getEntries(srcDir) {
+//   const directories = ["component", "container", "route"];
+//   let entries = {};
+
+//   directories.forEach((dir) => {
+//     const fullPath = path.join(srcDir, dir);
+//     const files = fs.readdirSync(fullPath);
+
+//     files.forEach((file) => {
+//       const fileWithoutExt = file.replace(/\.[^/.]+$/, "");
+//       entries[fileWithoutExt] = path.join(fullPath, file);
+//     });
+//   });
+
+//   return entries;
+// }
+function getEntries(srcDir) {
+  const directories = ["component", "container", "route"];
+  let entries = {};
+
+  directories.forEach((dir) => {
+    const fullPath = path.join(srcDir, dir);
+    const files = getAllFilesRecursive(fullPath);
+
+    files.forEach((file) => {
+      const fileWithoutExt = file.replace(/\.[^/.]+$/, "");
+      entries[fileWithoutExt] = path.join(fullPath, file);
+    });
+  });
+  entries["error"] = path.join(srcDir, "container", "error.hbs");
+  entries["index"] = path.join(srcDir, "route", "index.js");
+  entries["style"] = path.join(srcDir, "container", "style.scss");
+
+  return entries;
+}
+
+function getAllFilesRecursive(dir) {
+  let files = [];
+  const items = fs.readdirSync(dir);
+
+  for (const item of items) {
+    const itemPath = path.join(dir, item);
+    const stats = fs.statSync(itemPath);
+
+    if (stats.isDirectory()) {
+      files = files.concat(getAllFilesRecursive(itemPath));
+    } else {
+      files.push(itemPath.substring(dir.length + 1));
+    }
+  }
+
+  return files;
+}
 module.exports = {
   resolve: {
     fallback: {
@@ -23,11 +78,11 @@ module.exports = {
       url: require.resolve("url/"),
     },
   },
-  entry: "./src/route/index.js",
+  context: path.resolve(__dirname, "src"),
+  entry: getEntries("src"),
   output: {
-    path: path.resolve(__dirname, "public/"),
-    publicPath: "public",
-    filename: "app.js",
+    path: path.resolve(__dirname, "public"),
+    filename: "[name].js", // Використовуємо [name] для установлення імен вхідних файлів
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -45,14 +100,17 @@ module.exports = {
             presets: ["@babel/preset-env"],
           },
         },
+        include: path.resolve(__dirname, "src"),
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: ["style-loader", "css-loader", "sass-loader"],
+        include: path.resolve(__dirname, "src"),
       },
       {
         test: /\.hbs$/,
         loader: "handlebars-loader",
+        include: path.resolve(__dirname, "src"),
       },
     ],
   },

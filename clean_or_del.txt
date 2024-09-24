@@ -1,0 +1,3 @@
+"clean": "rimraf public/*", - work with Linux
+alternative
+"clean": "del /s /q public\\*", work with node.js
