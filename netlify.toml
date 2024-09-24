@@ -8,9 +8,6 @@
   command = "npm run build"
   publish = "public"
 
-# Ви можете додати інші налаштування, такі як змінні середовища, в залежності від потреб вашого проекту.
-[build.environment]
- NODE_VERSION = "16"
 
 [context.production.environment]
   NODE_ENV = "production"
