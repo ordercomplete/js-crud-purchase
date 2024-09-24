@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run clean && sass src:public/css && webpack --mode production"
   publish = "public"
   runtime = "node"
 
@@ -9,5 +9,8 @@
   publish = "public"
 
 # Ви можете додати інші налаштування, такі як змінні середовища, в залежності від потреб вашого проекту.
-# [build.environment]
-#   NODE_ENV = "production"
+[build.environment]
+ NODE_VERSION = "16"
+
+[context.production.environment]
+  NODE_ENV = "production"

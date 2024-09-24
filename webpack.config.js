@@ -32,7 +32,7 @@ function getEntries(srcDir) {
       entries[fileWithoutExt] = path.join(fullPath, file);
     });
   });
-  entries["error"] = path.join(srcDir, "container", "error.hbs");
+  // entries["error"] = path.join(srcDir, "container", "error.hbs");
   entries["index"] = path.join(srcDir, "route", "index.js");
   entries["style"] = path.join(srcDir, "container", "style.scss");
 
@@ -92,25 +92,27 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
         exclude: /node_modules/,
+        test: /\.js$/,
+        include: path.resolve(__dirname, "src"),
         use: {
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env"],
           },
         },
-        include: path.resolve(__dirname, "src"),
       },
       {
+        exclude: /node_modules/,
         test: /\.css$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
         include: path.resolve(__dirname, "src"),
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
+        exclude: /node_modules/,
         test: /\.hbs$/,
-        loader: "handlebars-loader",
         include: path.resolve(__dirname, "src"),
+        loader: "handlebars-loader",
       },
     ],
   },
