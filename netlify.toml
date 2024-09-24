@@ -1,5 +1,5 @@
 [build]
-  command = "$ npm run clean && sass src:public/css && webpack --mode production"
+  command = "npm run clean && sass src:public/css && webpack --mode production"
   publish = "public"
   runtime = "node"
 
